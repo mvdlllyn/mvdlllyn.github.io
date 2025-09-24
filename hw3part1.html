@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 1 of JavaScript Assignment 3.">
+    <title>JavaScript Homework 3 - Part 1</title>
+
+    <style>
+         body {
+            background-color: #dbd4e3;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+    <body>
+        <header>
+            <h1>Student Grades</h1>
+        </header>
+    <form id="studentgradesform">
+        <table>
+            <tr>
+                <td><label for="hwavg">Homework Average:</label></td>
+                <td><input type="number" id="hwavg" min="0" max="100"></td>
+            </tr>
+            <tr>
+                <td><label for="mtexam">Mid-Term Exam Score:</label></td>
+                <td><input type="number" id="mtexam" min="0" max="100"></td>
+            </tr>
+            <tr>
+                <td><label for="finalexam">Final Exam Score:</label></td>
+                <td><input type="number" id="finalexam" min="0" max="100"></td>
+            </tr>
+            <tr>
+                <td><label for="participation">Participation:</label></td>
+                <td><input type="number" id="participation" min="0" max="100"></td>
+            </tr> 
+            <tr>
+                <td colspan="2" style="text-align:left;">
+                <button type="button" onclick="calculate()">Submit</button>
+                <button type="button" onclick="clearform()">Clear</button>
+            </td>
+            </tr>
+        </table>
+    <br>
+        Final Results: <textarea rows="5" cols="40" id="results" readonly></textarea><br><br>
+    </form>
+
+<p><a href="hw3.html">Take me back to Homework 3 main page!</a></p>
+
+<script>
+function calculate()
+    {
+    // declaring variables
+    var hwavg, mtexam, finalexam, participation;
+
+    // get values from input
+    hwavg = parseInt(document.getElementById("hwavg").value);
+    mtexam = parseInt(document.getElementById("mtexam").value);
+    finalexam = parseInt(document.getElementById("finalexam").value);
+    participation = parseInt(document.getElementById("participation").value)
+
+    // if invalid
+    if (hwavg < 0 || hwavg > 100 || mtexam < 0 || mtexam > 100 || finalexam < 0 || finalexam > 100 || participation < 0 || participation > 100)
+        {document.getElementById("results").value = "ERROR! Numbers should be between 0-100."; 
+        return;}
+
+    if (isNaN(hwavg) || isNaN(mtexam) || isNaN(finalexam) || isNaN(participation))
+        {document.getElementById("results").value = "ERROR! Input should only be numbers."; 
+        return;}
+
+    // calculating final average
+    finalavg = Math.round((0.5 * hwavg) + (0.2 * mtexam) + (0.2 * finalexam) + (0.1 * participation));
+
+    // grade
+   if (finalavg >= 90) {grade = "A";}
+        else if (finalavg >= 80) {grade = "B";}
+        else if (finalavg >= 70) {grade = "C";}
+        else if (finalavg >= 60) {grade = "D";}
+        else {grade = "F";}
+    
+
+    // result
+    document.getElementById("results").value = "Student's Final Average: "
+        + finalavg + "\nFinal Grade: " + grade 
+
+    if (grade == "D" || grade == "F") {document.getElementById("results").value +=
+     "\n\nStudent must retake the course.";}
+    }
+// for form clearing
+function clearform()
+    {
+    document.getElementById("hwavg").value = "";
+    document.getElementById("mtexam").value = "";
+    document.getElementById("finalexam").value = "";
+    document.getElementById("participation").value = "";
+    document.getElementById("results").value = "";
+    }
+</script>
+
+</body>
