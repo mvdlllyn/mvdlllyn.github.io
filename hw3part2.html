@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 2 of JavaScript Assignment 3.">
+    <title>JavaScript Homework 3 - Part 2</title>
+
+    <style>
+         body {
+            background-color: #f3e0f2;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding: 15px;
+
+        input[type="text"] {text-align: right;}
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Homework 3 - Part 2</h1>
+    </header>
+
+    <h3>For each item, type the quantity sold by the seller.</h3>
+
+    <label for="item1">Item 1:</label>
+    <input type="number" id="item1" min="0">
+    <br><br>
+    <label for="item2">Item 2:</label>
+    <input type="number" id="item2" min="0">
+    <br><br>
+    <label for="item3">Item 3:</label>
+    <input type="number" id="item3" min="0">
+    <br><br>
+    <label for="item4">Item 4:</label>
+    <input type="number" id="item4" min="0">
+    <br><br>
+
+    <form id="salestotalform">
+        <table>
+            <tr>
+                <th>Item#</th>
+                <th>Price</th>
+                <th>Qty Sold</th>
+                <th>Total $</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>$20.99</td>
+                <td><input type="text" id="item1qty" readonly></td>
+                <td><input type="text" id="item1total" readonly></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>$12.75</td>
+                <td><input type="text" id="item2qty" readonly></td>
+                <td><input type="text" id="item2total" readonly></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>$9.95</td>
+                <td><input type="text" id="item3qty" readonly></td>
+                <td><input type="text" id="item3total" readonly></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>$35.89</td>
+                <td><input type="text" id="item4qty" readonly></td>
+                <td><input type="text" id="item4total" readonly></td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Amount Sold</td>
+                <td><input type="text" id=totalamtsold readonly></td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Weekly Earnings</td>
+                <td><textarea id="weeklyearnings" readonly rows="2" style="resize:none"></textarea></td>
+            </tr>
+        </table>
+        <br>
+        <button type="button" onclick="calculate()">Submit</button>
+        <button type="button" onclick="clearform()">Clear Form</button>
+    </form>
+
+<script>
+    function calculate()
+    {
+    //values
+    var qty1 = parseInt(document.getElementById("item1").value);
+    var qty2 = parseInt(document.getElementById("item2").value);
+    var qty3 = parseInt(document.getElementById("item3").value);
+    var qty4 = parseInt(document.getElementById("item4").value);
+   
+    //error message
+    if (isNaN(qty1) || isNaN(qty2) || isNaN(qty3) || isNaN(qty4) || qty1 < 0 || qty2 < 0 || qty3 < 0 || qty4 < 0)
+    {
+        document.getElementById("weeklyearnings").value = "ERROR! Please input positive numbers.";
+
+        document.getElementById("item1qty").value = "";
+        document.getElementById("item2qty").value = "";
+        document.getElementById("item3qty").value = "";
+        document.getElementById("item4qty").value = "";
+        document.getElementById("item1total").value = "";
+        document.getElementById("item2total").value = "";
+        document.getElementById("item3total").value = "";
+        document.getElementById("item4total").value = "";
+        document.getElementById("totalamtsold").value = "";
+        return;
+    }
+
+    // qty sold inputs
+    document.getElementById("item1qty").value = qty1;
+    document.getElementById("item2qty").value = qty2;
+    document.getElementById("item3qty").value = qty3;
+    document.getElementById("item4qty").value = qty4;
+
+    // calculations
+    var total1 = qty1 * 20.99;
+    var total2 = qty2 * 12.75;
+    var total3 = qty3 * 9.95;
+    var total4 = qty4 * 35.89;
+
+    document.getElementById("item1total").value = total1.toFixed(2);
+    document.getElementById("item2total").value = total2.toFixed(2);
+    document.getElementById("item3total").value = total3.toFixed(2);
+    document.getElementById("item4total").value = total4.toFixed(2);
+
+    var totalamtsold = total1 + total2 + total3 + total4;
+    var weeklyearnings = 250 + (0.09 * totalamtsold);
+
+    // decimals
+    document.getElementById("totalamtsold").value = totalamtsold.toFixed(2);
+    document.getElementById("weeklyearnings").value = weeklyearnings.toFixed(2);
+    }
+
+    // for form clearing
+    function clearform()
+    {
+    document.getElementById("item1").value = "";
+    document.getElementById("item2").value = "";
+    document.getElementById("item3").value = "";
+    document.getElementById("item4").value = "";
+    document.getElementById("item1qty").value = "";
+    document.getElementById("item2qty").value = "";
+    document.getElementById("item3qty").value = "";
+    document.getElementById("item4qty").value = "";
+    document.getElementById("item1total").value = "";
+    document.getElementById("item2total").value = "";
+    document.getElementById("item3total").value = "";
+    document.getElementById("item4total").value = "";
+    document.getElementById("totalamtsold").value = "";
+    document.getElementById("weeklyearnings").value = "";
+    }
+</script>
+
+</body>
