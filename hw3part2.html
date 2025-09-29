@@ -9,10 +9,10 @@
          body {
             background-color: #f3e0f2;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            padding: 15px;
+            padding: 15px;}
 
-        input[type="text"] {text-align: right;}
-        }
+        input{
+            [type="text"] {text-align: right;}
     </style>
 </head>
 
@@ -96,7 +96,7 @@
     //error message
     if (isNaN(qty1) || isNaN(qty2) || isNaN(qty3) || isNaN(qty4) || qty1 < 0 || qty2 < 0 || qty3 < 0 || qty4 < 0)
     {
-        document.getElementById("weeklyearnings").value = "ERROR! Please input positive numbers.";
+        document.getElementById("weeklyearnings").value = "ERROR! Please input 0 (zero) or a positive number.";
 
         document.getElementById("item1qty").value = "";
         document.getElementById("item2qty").value = "";
