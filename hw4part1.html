@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 1 of Javascript Assignment 4.">
+    <title>Javascript Homework 4 - Part 1</title>
+
+    <style>
+        body{
+            background-color: #e0b086;
+            font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,Sans-Serif;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Looping Statements</h1>
+    </header>
+
+<script>
+    // FOR STATEMENT
+    var product = 1;
+    var sum = 0;
+    var numbers = [];
+
+    document.write("<h2>For Statement:</h2>");
+
+    for (var x = 5; x <= 25; x += 4)
+       {numbers.push(x);
+       product = product * x;
+       sum= sum + x;
+       }
+    
+    document.write("The result of " + numbers.join(" * ") + " is " + product.toLocaleString() + "." + "<br>");
+    document.write("The result of " + numbers.join(" + ") + " is " + sum.toLocaleString() + ".");
+
+    //WHILE STATEMENT
+    var product = 1;
+    var sum = 0;
+    var numbers = [];
+    var x = 3;
+
+    document.write("<h2>While Statement:</h2>");
+
+    while (x <= 18)
+       {numbers.push(x);
+        product = product * x;
+        sum = sum + x;
+        x = x + 3;
+       }
+
+    document.write("The result of " + numbers.join(" * ") + " is " + product.toLocaleString() + "." + "<br>");
+    document.write("The result of " + numbers.join(" + ") + " is " + sum.toLocaleString() + "." + "<br>");
+</script>
+
+<p><a href="hw4.html">Take me back to Homework 4 main page!</a></p>
+
+</body>
+</html>
