@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 1 of Javascript Assignment 5.">
+    <title>Javascript Homework 5 - Part 1</title>
+
+    <style>
+        body{
+            background-color: #ee9f82;
+            font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,Sans-Serif;
+            padding: 15px;
+        }
+
+        input[type="text"] {
+            width: 250px;
+            height: 20px;
+            border: 1px solid black;
+        }
+
+        #output{
+            background-color: white;
+            margin-top: 15px;
+            width: 200px;
+            min-height: 50px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Arrays</h1>
+    </header>
+
+    <form id="agemovieform">
+        <label for="name">Enter your full name: </label><br>
+        <input type="text" id="name"><br><br>
+
+        <label>Age Group:</label><br>
+        <input type="radio" id="lessthan21" name="agegroup" value="lessthan21">
+        <label for="lessthan21">Less than 21</label><br>
+
+        <input type="radio" id="between21and50" name="agegroup" value="between21and50">
+        <label for="between21and50">Between 21 and 50</label><br>
+
+        <input type="radio" id="olderthan50" name="agegroup" value="olderthan50">
+        <label for="olderthan50">Older than 50</label><br><br>
+
+        <label>Browser you have used:</label><br>
+        <input type="checkbox" id="Firefox" name="browsers" value="Firefox">
+        <label for="Firefox">Firefox</label><br>
+
+        <input type="checkbox" id="Edge" name="browsers" value="Edge">
+        <label for="Edge">Edge</label><br>
+
+        <input type="checkbox" id="Chrome" name="browsers" value="Chrome">
+        <label for="Chrome">Chrome</label><br>
+
+        <input type="checkbox" id="Safari" name="browsers" value="Safari">
+        <label for="Safari">Safari</label><br><br>
+
+        <label for="moviegenre">Movie genre you prefer</label>
+        <select id="moviegenre" name="moviegenre">
+            <option value="">Select genre</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="ScienceFiction">Science Fiction</option>
+        </select>
+
+        <br><br>
+        <button type="button" onclick="validateform()">Submit</button>
+        <button type="reset" onclick="clearform()">Clear</button>
+    </form>
+
+    <div id="output"></div>
+
+
+<script>
+function validateform() {
+    var name = document.getElementById("name").value.trim();
+    var agegroups = document.getElementsByName("agegroup");
+    var browsers = document.getElementsByName("browsers");
+    var moviegenre = document.getElementById("moviegenre").value;
+    var output = document.getElementById("output");
+
+    var msg = "";
+    var valid = true;
+
+    // NAME
+    if (name === "") {
+        msg += "Enter a full name.<br>"; valid = false;
+    }
+
+    // AGE GRP
+    var ageChecked = false;
+    for (var i= 0; i < agegroups.length; i++) {
+        if (agegroups[i].checked) {
+            ageChecked = true; 
+            break;
+        }
+    }
+    if (!ageChecked) {
+        msg += "Select your age group.<br>";
+        valid = false;
+    }
+
+    // BROWSER
+    var browserChecked = false;
+    for (var i = 0; i < browsers.length; i++) {
+        if (browsers[i].checked) {
+            browserChecked = true;
+            break;
+        }
+    }
+    if (!browserChecked) {
+        msg += "Select at least one browser.<br>";
+        valid = false;
+    }
+
+    // MOVIE GENRE
+    if (moviegenre === "") {
+        msg += "Select a movie genre.<br>";
+        valid = false;
+    }
+
+    //COMPLETED
+    if (valid) {
+        output.innerHTML = "Thanks, your data was submitted!";
+    } else {
+        output.innerHTML = msg;
+    }
+}
+</script>
+
+<p><a href="hw5.html">Take me back to Homework 5 main page!</a></p>
+
+
+</body>
