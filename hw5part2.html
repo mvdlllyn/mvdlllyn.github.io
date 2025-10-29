@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 2 of Javascript Assignment 5.">
+    <title>Javascript Homework 5 - Part 2</title>
+
+    <style>
+        body{
+            background-color: #ff7f50;
+            font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,Sans-Serif;
+            padding: 15px;
+        }
+
+        input[type="text"] {
+            width: 250px;
+            height: 20px;
+            border: 1px solid black;
+        }
+
+        #output{
+            background-color: white;
+            margin-top: 20px;
+            width: 500px;
+            min-height: 50px;
+            border: 1px solid black;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>July/2024 Census Data</h1>
+    </header>
+
+    <form id="statedataform">
+        <label for="stateinfo">Enter full name of state or two-letter abbreviation:</label><br>
+        <input type="text" id="stateinfo"><br><br>
+        
+        <button type="button" onclick="getStateInfo()">Submit</button>
+        <button type="reset" onclick="clearOutput()">Clear</button>
+    </form>
+
+    <div id="output"></div>
+
+<script>
+    // 2 DIMENSIONAL ARRAY
+var states = [
+    ["AL", "Alabama", "Montgomery", "5,157,699"],
+    ["AK", "Alaska", "Juneau", "740,133"],
+    ["AZ", "Arizona", "Phoenix", "7,582,384"],
+    ["AR", "Arkansas", "Little Rock", "3,088,354"],
+    ["CA", "California", "Sacramento", "39,431,263"],
+    ["CO", "Colorado", "Denver", "5,957,493"]
+];
+
+function getStateInfo() {
+    var input = document.getElementById("stateinfo").value.trim();
+    var output = document.getElementById("output");
+    var stateValid = false;
+    
+    if (input === "") {
+        output.innerHTML = "Enter a valid state name or abbreviation.";
+        return;
+    }
+
+    input = input.toLowerCase();
+
+    for (var i = 0; i < states.length; i++) {
+        var abbrev = states[i][0].toLowerCase();
+        var name = states[i][1].toLowerCase();
+
+        if (input === abbrev || input === name) {
+            output.innerHTML =
+                "Thanks for your inquiry, here is the information you requested:<br><br>" +
+                "State abbreviation = " + states[i][0] + "<br>" +
+                "State name = " + states[i][1] + "<br>" +
+                "State capital = " + states[i][2] + "<br>" +
+                "State population = " + states[i][3];
+            output.style.fontStyle = "italic";
+            stateValid = true;
+            break;
+        }
+    }
+
+    if (!stateValid) {
+        output.innerHTML = "Sorry, we do not have information about this state!<br>" +
+                           "We only have information about AL, AK, AZ, AR, CA, CO.";
+        output.style.fontStyle = "normal";
+    }
+}
+
+function clearOutput() {
+    document.getElementById("output").innerHTML = "";
+}
+</script>
+
+<p><a href="hw5.html">Take me back to Homework 5 main page!</a></p>
+
+</body>
