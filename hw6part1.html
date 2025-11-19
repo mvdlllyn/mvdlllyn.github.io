@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 1 of Javascript Assignment 6.">
+    <title>Javascript Homework 6 - Part 1</title>
+
+    <style>
+        body{
+            background-color: #80d4ef;
+            font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,Sans-Serif;
+            padding: 15px;
+        }
+
+        input[type="text"] {
+            width: 250px;
+            height: 20px;
+            border: 1px solid black;
+        }
+
+        textarea {
+            width: 450px;
+            height: 125px;
+            margin-top: 15px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+ <header>
+        <h1>Objects - Part 1</h1>
+</header>
+
+<form>
+    <label>Please enter a number with AT LEAST 4 decimals.</label><br>
+    <input type="text" id="decnum"><br><br>
+
+    <button type="button" onclick="submitform()">Submit</button>
+    <button type="button" onclick="clearform()">Clear</button><br>
+</form>
+
+<textarea id="output" readonly></textarea>
+
+<script>
+function submitform() {
+    var input = document.getElementById("decnum").value;
+    var num = parseFloat(input);
+    var decimals = (input.split(".") [1] || "").length;
+
+    if (isNaN(num) || decimals < 4) {
+        document.getElementById("output").value =
+        "Please type in a valid number that has at least 4 decimals.";
+        return;
+    }
+
+    var rounded = Math.round(num);
+    var sqrt = Math.round(Math.sqrt(num));
+    var tenth = num.toFixed(1);
+    var hundredth = num.toFixed(2);
+    var thousandth = num.toFixed(3);
+
+    var message = "";
+    message += "You typed number " + num + "\n\n";
+    message += "Rounded to the the nearest integer = " + rounded + "\n";
+    message += "Square root rounded to integer = " + sqrt + "\n";
+    message += "Rounded to the nearest 10th position = " + tenth + "\n";
+    message += "Rounded to the nearest 100th position = " + hundredth + "\n";
+    message += "Rounded to the nearest 1000th position = " + thousandth + "\n";
+
+    document.getElementById("output").value = message;
+    }
+
+function clearform() {
+    document.getElementById("decnum").value = "";
+    document.getElementById("output").value = "";
+}
+
+</script>
+
+<p><a href="hw6.html">Take me back to Homework 6 main page!</a></p>
+
+</body>
+
+
+
+
+
+
