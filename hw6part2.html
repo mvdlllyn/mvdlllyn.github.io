@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Part 2 of Javascript Assignment 6.">
+    <title>Javascript Homework 6 - Part 2</title>
+
+    <style>
+        body{
+            background-color: #94b1e7;
+            font-family: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,Sans-Serif;
+            padding: 15px;
+        }
+
+        textarea {
+            width: 300px;
+            height: 100px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        #output {
+            width: 300px;
+            height: 100px;
+            margin-top: 15px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Objects - Part 2</h1>
+    </header>
+
+<form>
+    <label>Please type anything!</label><br>
+    <textarea id="content"></textarea><br><br>
+
+    <label>Please type a SINGLE character.</label><br>
+    <input type="text" id="character" maxlength="1"><br>
+
+    <button type="button" onclick="submitcharacter()">Submit</button>
+    <button type="button" onclick="clearform()">Clear</button>
+</form>
+
+<textarea id="output" readonly></textarea>
+
+<script>
+function submitcharacter() {
+    var content = document.getElementById("content").value;
+    var character = document.getElementById("character").value;
+
+    var lowercontent = content.toLowerCase();
+    var lowercharacter = character.toLowerCase();
+
+    if (character.length !== 1) {
+        document.getElementById("output").value = 
+        "Type only ONE character."; return;
+    }
+
+    var count = 0;
+        for (var i = 0; i < lowercontent.length; i++) {
+            if (lowercontent[i] === lowercharacter) {count++;}
+        }
+
+    if (count === 0) {
+        var wind = window.open("", "", "width=300,height=100,top=100,left=500");
+
+        wind.document.write(
+            "<p>Search character '" + character + "' not found in the content you typed.</p>" +
+            "<button onclick='window.close()'>Close</button>");
+    
+        document.getElementById("output").value = ""; return;
+    }
+
+    var msg = "The character '" + character + "' shows " + count + " times.";
+    document.getElementById("output").value = msg;
+}
+
+    function clearform() {
+        document.getElementById("content").value = "";
+        document.getElementById("character").value = "";
+        document.getElementById("output").value = "";
+    }
+</script>
+
+<p><a href="hw6.html">Take me back to Homework 6 main page!</a></p>
+
+</body>
+</html>
